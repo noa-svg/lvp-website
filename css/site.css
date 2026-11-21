@@ -264,7 +264,7 @@ textarea.fld{padding:10.5px 10px 3px 12px;resize:none}
   .btn-send{font-size:calc(17.2143*var(--u));line-height:calc(24.1*var(--u))}
   .fnote{font-size:calc(12*var(--u));line-height:calc(16.8*var(--u))}
   .fstatus{font-size:calc(13*var(--u));line-height:calc(18.2*var(--u))}
-  .bottom{padding:calc(21*var(--u)) calc(16*var(--u)) calc(19*var(--u))}
+  .bottom{padding:calc(21*var(--u)) calc(16*var(--u)) calc(19*var(--u) + 56px)}
   .bottom a,.bottom .copy,.bottom .note{font-size:calc(12*var(--u));line-height:calc(16.8*var(--u))}
   .g-h1{font-size:calc(22*var(--u));line-height:calc(30.8*var(--u))}
   .g-sub{font-size:calc(16*var(--u));line-height:calc(22.4*var(--u))}
