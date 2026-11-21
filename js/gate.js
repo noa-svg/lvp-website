@@ -5,7 +5,7 @@
   if (!form) return;
   var err = form.querySelector(".g-err");
   /* Back from the letters (Safari keeps the page in memory): the button works again. */
-  window.addEventListener("pageshow", function () { var b = form.querySelector("button[type=submit]"); if (b) b.disabled = false; });
+  window.addEventListener("pageshow", function () { var b = form.querySelector("button[type=submit]"); if (b) { b.disabled = false; b.textContent = "APPROVE & CONTINUE"; } });
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     err.textContent = "";
@@ -34,7 +34,7 @@
     var gone = false;
     var go = function () { if (gone) return; gone = true; location.href = "/letters/"; };
     var btn = form.querySelector("button[type=submit]");
-    if (btn) btn.disabled = true;
+    if (btn) { btn.disabled = true; btn.textContent = "Checking\u2026"; }
     setTimeout(go, 4000);
     try { LVP.post(payload).then(go, go); } catch (x) { go(); }
   });

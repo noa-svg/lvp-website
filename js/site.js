@@ -7,6 +7,12 @@ var FORM_ENDPOINT = "https://site-forms-717035109771.us-central1.run.app/submit"
   "use strict";
   var doc = document.documentElement;
 
+  /* Tablets (768 to 979px) get the 980px desktop canvas scaled to fit, not a sideways scroll. */
+  if (window.innerWidth >= 768 && window.innerWidth < 980) {
+    var vp = document.querySelector('meta[name="viewport"]');
+    if (vp) vp.setAttribute("content", "width=980");
+  }
+
   /* Figtree-only tracking tweaks are removed once a Museo Sans face loads. */
   if (document.fonts && document.fonts.ready) {
     var museoCheck = function () {

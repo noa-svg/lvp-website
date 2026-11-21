@@ -8,7 +8,7 @@
   var PITCH = { 1: 300, 2: 290, 3: 313.5, 4: 245 };
   var SHIFT = { 1: 0, 2: 4, 3: -2.5, 4: 4 };
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-  fetch("/letters/letters.json").then(function (r) { return r.json(); }).then(function (letters) {
+  fetch("/letters/letters.json").then(function (r) { if (!r.ok) throw new Error("load"); return r.json(); }).then(function (letters) {
     var years = [];
     letters.forEach(function (l) { var y = years.find(function (g) { return g.year === l.year; }); if (!y) { y = { year: l.year, items: [] }; years.push(y); } y.items.push(l); });
     years.forEach(function (g) {
@@ -37,5 +37,11 @@
       sec.appendChild(row);
       root.appendChild(sec);
     });
+  }).catch(function () {
+    var p = el("p", "f5", "Letters are unavailable right now. Email ");
+    var a = el("a", null, "info@legacyvpartners.com"); a.href = "mailto:info@legacyvpartners.com";
+    p.appendChild(a); p.appendChild(document.createTextNode("."));
+    p.style.textAlign = "center"; p.style.padding = "40px 16px";
+    root.appendChild(p);
   });
 })();
