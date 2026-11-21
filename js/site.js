@@ -9,11 +9,13 @@ var FORM_ENDPOINT = "https://site-forms-717035109771.us-central1.run.app/submit"
 
   /* Figtree-only tracking tweaks are removed once a Museo Sans face loads. */
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function () {
+    var museoCheck = function () {
       var museo = false;
       document.fonts.forEach(function (f) { if (/Museo Sans/.test(f.family) && f.status === "loaded") museo = true; });
       if (museo) doc.classList.remove("ff-figtree");
-    });
+    };
+    document.fonts.ready.then(museoCheck);
+    if (document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", museoCheck);
   }
 
   /* ---- Mobile menu ---- */
