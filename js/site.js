@@ -41,6 +41,17 @@ var FORM_ENDPOINT = "https://site-forms-717035109771.us-central1.run.app/submit"
         el.classList.add("rv", "pre");
         io.observe(el);
       });
+      /* A fast fling or a jump can pass an element between two observer checks: reveal anything reached. */
+      var sweepT = 0;
+      window.addEventListener("scroll", function () {
+        if (sweepT) return;
+        sweepT = setTimeout(function () {
+          sweepT = 0;
+          document.querySelectorAll(".rv.pre").forEach(function (el) {
+            if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.remove("pre"); io.unobserve(el); }
+          });
+        }, 100);
+      }, { passive: true });
     }
   }
 
