@@ -24,6 +24,26 @@ var FORM_ENDPOINT = "https://site-forms-717035109771.us-central1.run.app/submit"
     if (document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", museoCheck);
   }
 
+  /* ---- Gentle motion: hero sequence, and a one-time fade-up for content below the first screen ---- */
+  if (window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    doc.classList.add("lvp-motion");
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.remove("pre"); io.unobserve(en.target); } });
+      }, { rootMargin: "0px 0px -6% 0px" });
+      var rowIndex = new Map();
+      document.querySelectorAll("main .sec:not(.hero) .e").forEach(function (el) {
+        if (el.classList.contains("anchor") || el.parentElement.closest(".e")) return;
+        if (el.getBoundingClientRect().top < window.innerHeight) return;
+        var p = el.parentElement, i = rowIndex.get(p) || 0;
+        rowIndex.set(p, i + 1);
+        if (el.classList.contains("card") || el.closest(".people")) el.style.setProperty("--rd", Math.min(i, 4) * 0.07 + "s");
+        el.classList.add("rv", "pre");
+        io.observe(el);
+      });
+    }
+  }
+
   /* ---- Mobile menu ---- */
   var burger = document.querySelector(".burger");
   var menu = document.getElementById("mmenu");
