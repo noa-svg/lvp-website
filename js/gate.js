@@ -4,6 +4,8 @@
   var form = document.querySelector("form.lvp-gate");
   if (!form) return;
   var err = form.querySelector(".g-err");
+  /* Back from the letters (Safari keeps the page in memory): the button works again. */
+  window.addEventListener("pageshow", function () { var b = form.querySelector("button[type=submit]"); if (b) b.disabled = false; });
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     err.textContent = "";
@@ -26,9 +28,14 @@
       page: location.pathname,
       website: form.elements.website.value
     };
-    /* Fire and forget: access does not depend on the endpoint. */
-    try { LVP.post(payload).catch(function () {}); } catch (x) {}
+    /* Access never depends on the endpoint, but leaving the page cancels the request:
+       wait for the answer (at most 4 seconds), then go to the letters either way. */
     try { sessionStorage.setItem("lvpLettersAccess", "1"); } catch (x) {}
-    location.href = "/letters/";
+    var gone = false;
+    var go = function () { if (gone) return; gone = true; location.href = "/letters/"; };
+    var btn = form.querySelector("button[type=submit]");
+    if (btn) btn.disabled = true;
+    setTimeout(go, 4000);
+    try { LVP.post(payload).then(go, go); } catch (x) { go(); }
   });
 })();

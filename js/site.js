@@ -60,6 +60,7 @@ var FORM_ENDPOINT = "https://site-forms-717035109771.us-central1.run.app/submit"
     if (!FORM_ENDPOINT) return Promise.reject(new Error("no endpoint"));
     return fetch(FORM_ENDPOINT, {
       method: "POST",
+      keepalive: true,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     }).then(function (r) {
