@@ -1,7 +1,7 @@
 /* Legacy Value Partners - shared behaviour (menu, contact form, font switch). */
 /* Where both forms POST. Leave empty until the backend exists; with an empty
    value the contact form shows the "write to us directly" message. */
-var FORM_ENDPOINT = "";
+var FORM_ENDPOINT = "https://site-forms-717035109771.us-central1.run.app/submit";
 
 (function () {
   "use strict";
