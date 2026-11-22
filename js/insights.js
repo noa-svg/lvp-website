@@ -29,10 +29,11 @@
       media = document.createElement("div"); media.className = "ins-media";
       media.innerHTML = '<div class="ins-tile"><span class="nm f9">' + esc(d.tile || "") + '</span><span class="bar" aria-hidden="true"></span><span class="ev f9">' + esc(d.event || "") + '</span></div>';
     }
-    /* Signature move: a cut-out layer (the missile) that rides the parallax, then flies off on hover. */
+    /* Cut-out layer: the missile flies off, a person or object lifts toward you (depth). */
     if (d.fx && d.fxSrc && media.querySelector("img")) {
       media.classList.add("fx-" + d.fx);
-      media.insertAdjacentHTML("beforeend", '<span class="fxw" aria-hidden="true"><span class="fx"><img src="' + d.fxSrc + '" alt=""><i class="flame"></i></span></span>');
+      media.insertAdjacentHTML("beforeend", '<span class="fxw" aria-hidden="true"><span class="fx"><img src="' + d.fxSrc + '" alt="">' + (d.fx === "launch" ? '<i class="flame"></i>' : "") + '</span></span>');
+      if (d.fxO) media.style.setProperty("--fx-o", d.fxO);
     }
     var im = media.querySelector("img");
     if (im) {
