@@ -36,31 +36,31 @@ main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-lis
 .ins-media{display:block;width:423px;aspect-ratio:16/9;margin-bottom:22px;position:relative;overflow:hidden;background:var(--dark);text-decoration:none}
 .ins-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease,opacity .2s ease}
 /* Hover pop: the picture zooms a touch and drifts with the cursor (parallax). */
-.ins-media img{transform:scale(1.001) translate3d(0,0,0);transition:transform .5s cubic-bezier(.2,.7,.1,1);will-change:transform}
-.ins-media.pop img{transform:scale(1.04) translate3d(calc(var(--px,0)*-6px),calc(var(--py,0)*-4px),0);transition:transform .25s ease-out}
+.ins-media img{transform:scale(1.001) translate3d(0,0,0);transition:transform 1s cubic-bezier(.22,.61,.36,1);will-change:transform}
+.ins-media.pop img{transform:scale(1.025) translate3d(calc(var(--px,0)*-3px),calc(var(--py,0)*-2px),0);transition:transform .9s cubic-bezier(.22,.61,.36,1)}
 .ins-media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 60px rgba(0,0,0,.0);transition:box-shadow .4s ease;pointer-events:none}
-.ins-media.pop::after{box-shadow:inset 0 0 60px rgba(0,0,0,.25)}
+.ins-media.pop::after{box-shadow:inset 0 0 60px rgba(0,0,0,0)}
 .ins-media img.sq{object-fit:contain}
 /* Signature move layer: same frame as the picture, so it lines up pixel for pixel and shares the parallax. */
-.ins-media .fxw{position:absolute;inset:0;pointer-events:none;transform:scale(1.001);transition:transform .5s cubic-bezier(.2,.7,.1,1)}
-.ins-media.pop .fxw{transform:scale(1.04) translate3d(calc(var(--px,0)*-6px),calc(var(--py,0)*-4px),0);transition:transform .25s ease-out}
+.ins-media .fxw{position:absolute;inset:0;pointer-events:none;transform:scale(1.001);transition:transform 1s cubic-bezier(.22,.61,.36,1)}
+.ins-media.pop .fxw{transform:scale(1.025) translate3d(calc(var(--px,0)*-3px),calc(var(--py,0)*-2px),0);transition:transform .9s cubic-bezier(.22,.61,.36,1)}
 .ins-media .fx{position:absolute;inset:0}
 .ins-media .fx img{width:100%;height:100%;object-fit:cover;transform:none!important;transition:none}
 .ins-media .fx .flame{position:absolute;left:var(--fl-x);top:var(--fl-y);width:2.4%;height:15%;margin-left:-1.2%;transform-origin:50% 0;transform:rotate(var(--fl-r));border-radius:50% 50% 50% 50%/30% 30% 70% 70%;background:radial-gradient(ellipse 50% 60% at 50% 18%,#fff 0,#ffe9a8 30%,rgba(255,150,40,.75) 60%,rgba(255,90,0,0) 100%);filter:blur(.6px);opacity:0}
 /* Launch: the missile accelerates up its own line and leaves the frame. */
 .ins-media.fx-launch{--fl-x:66.6%;--fl-y:31.4%;--fl-r:-17.7deg}
 .ins-media.fx-launch:not(.pop) .fx{animation:fxBack .45s ease both}
-.ins-media.fx-launch.pop .fx{transform:translate(-11.2%,-62%);transition:transform 1.15s cubic-bezier(.6,0,.9,.45) .08s}
+.ins-media.fx-launch.pop .fx{transform:translate(-11.2%,-62%);transition:transform 2s cubic-bezier(.55,0,.75,.3) .15s}
 .ins-media.fx-launch.pop .fx .flame{opacity:1;transition:opacity .12s;animation:fxFlicker .09s steps(2) infinite alternate}
-.ins-media.fx-launch.pop{animation:fxRumble .32s linear}
+.ins-media.fx-launch.pop{}
 /* Depth: the person lifts toward you while the room behind softens and barely moves (iPhone depth-effect style). */
 .ins-media.fx-depth::after{z-index:1}
-.ins-media.fx-depth .fxw{z-index:2;transform:none;transform-origin:var(--fx-o,50% 100%);transition:transform .55s cubic-bezier(.2,.7,.1,1)}
-.ins-media.fx-depth.pop .fxw{transform:translate3d(calc(var(--px,0)*4px),calc(var(--py,0)*2.5px),0) scale(1.035);transition:transform .3s ease-out}
-.ins-media.fx-depth .fx img{transition:filter .4s ease}
-.ins-media.fx-depth.pop .fx img{filter:drop-shadow(0 6px 12px rgba(0,0,0,.3))}
-.ins-media.fx-depth>img{transition:transform .5s cubic-bezier(.2,.7,.1,1),filter .45s ease}
-.ins-media.fx-depth.pop>img{transform:scale(1.015) translate3d(calc(var(--px,0)*-2px),calc(var(--py,0)*-1.5px),0);filter:blur(1px) brightness(.86);transition:transform .25s ease-out,filter .35s ease}
+.ins-media.fx-depth .fxw{z-index:2;transform:none;transform-origin:var(--fx-o,50% 100%);transition:transform 1s cubic-bezier(.22,.61,.36,1)}
+.ins-media.fx-depth.pop .fxw{transform:translate3d(calc(var(--px,0)*2px),calc(var(--py,0)*1px),0) scale(1.02);transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+.ins-media.fx-depth .fx img{transition:filter 1s cubic-bezier(.22,.61,.36,1)}
+.ins-media.fx-depth.pop .fx img{filter:drop-shadow(0 4px 10px rgba(0,0,0,.18))}
+.ins-media.fx-depth>img{transition:transform 1s cubic-bezier(.22,.61,.36,1),filter 1s cubic-bezier(.22,.61,.36,1)}
+.ins-media.fx-depth.pop>img{transform:scale(1.01) translate3d(calc(var(--px,0)*-1px),calc(var(--py,0)*-1px),0);filter:blur(.6px) brightness(.92);transition:transform .9s cubic-bezier(.22,.61,.36,1),filter .9s cubic-bezier(.22,.61,.36,1)}
 @keyframes fxBack{from{opacity:0}to{opacity:1}}
 @keyframes fxFlicker{from{height:13%}to{height:18%}}
 @keyframes fxRumble{0%,100%{transform:none}20%{transform:translate(1px,-1px)}40%{transform:translate(-1px,1px)}60%{transform:translate(1px,1px)}80%{transform:translate(-1px,0)}}
