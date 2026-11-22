@@ -50,9 +50,9 @@ main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-lis
 /* Launch: the missile accelerates up its own line and leaves the frame. */
 .ins-media.fx-launch{--fl-x:66.6%;--fl-y:31.4%;--fl-r:-17.7deg}
 .ins-media.fx-launch:not(.pop) .fx{animation:fxBack .45s ease both}
-.ins-media.fx-launch.pop .fx{transform:translate(-11.2%,-62%);transition:transform 2s cubic-bezier(.55,0,.75,.3) .15s}
+.ins-media.fx-launch.pop .fx{transform:translate(-11.2%,-62%);transition:transform 1.15s cubic-bezier(.6,0,.9,.45) .08s}
 .ins-media.fx-launch.pop .fx .flame{opacity:1;transition:opacity .12s;animation:fxFlicker .09s steps(2) infinite alternate}
-.ins-media.fx-launch.pop{}
+.ins-media.fx-launch.pop{animation:fxRumble .32s linear}
 /* Depth: the person lifts toward you while the room behind softens and barely moves (iPhone depth-effect style). */
 .ins-media.fx-depth::after{z-index:1}
 .ins-media.fx-depth .fxw{z-index:2;transform:none;transform-origin:var(--fx-o,50% 100%);transition:transform 1s cubic-bezier(.22,.61,.36,1)}
