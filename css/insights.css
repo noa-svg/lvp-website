@@ -41,6 +41,8 @@ main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-lis
 .ins-media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 60px rgba(0,0,0,.0);transition:box-shadow .4s ease;pointer-events:none}
 .ins-media.pop::after{box-shadow:inset 0 0 60px rgba(0,0,0,0)}
 .ins-media img.sq{object-fit:contain}
+/* Photo credit for Creative Commons images: small, quiet, bottom right. */
+.ins-media[data-credit]::before{content:attr(data-credit);position:absolute;right:6px;bottom:4px;z-index:3;font-size:9px;line-height:12px;letter-spacing:.2px;color:rgba(255,255,255,.75);text-shadow:0 0 3px rgba(0,0,0,.8);pointer-events:none}
 /* Signature move layer: same frame as the picture, so it lines up pixel for pixel and shares the parallax. */
 .ins-media .fxw{position:absolute;inset:0;pointer-events:none;transform:scale(1.001);transition:transform 1s cubic-bezier(.22,.61,.36,1)}
 .ins-media.pop .fxw{transform:scale(1.025) translate3d(calc(var(--px,0)*-3px),calc(var(--py,0)*-2px),0);transition:transform .9s cubic-bezier(.22,.61,.36,1)}

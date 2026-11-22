@@ -35,6 +35,7 @@
       media.insertAdjacentHTML("beforeend", '<span class="fxw" aria-hidden="true"><span class="fx"><img src="' + d.fxSrc + '" alt="">' + (d.fx === "launch" ? '<i class="flame"></i>' : "") + '</span></span>');
       if (d.fxO) media.style.setProperty("--fx-o", d.fxO);
     }
+    if (d.credit && media.querySelector("img")) media.setAttribute("data-credit", d.credit);
     var im = media.querySelector("img");
     if (im) {
       im.addEventListener("load", function () { if (im.naturalWidth / im.naturalHeight < 1.1) im.classList.add("sq"); });
