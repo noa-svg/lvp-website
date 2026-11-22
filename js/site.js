@@ -33,7 +33,7 @@ var FORM_ENDPOINT = "https://site-forms-717035109771.us-central1.run.app/submit"
       }, { rootMargin: "0px 0px -6% 0px" });
       var rowIndex = new Map();
       document.querySelectorAll("main .sec:not(.hero) .e").forEach(function (el) {
-        if (el.classList.contains("anchor") || el.parentElement.closest(".e")) return;
+        if (el.classList.contains("anchor") || el.classList.contains("bar") || el.parentElement.closest(".e")) return;
         if (el.getBoundingClientRect().top < window.innerHeight) return;
         var p = el.parentElement, i = rowIndex.get(p) || 0;
         rowIndex.set(p, i + 1);
