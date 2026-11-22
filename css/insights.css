@@ -1,0 +1,66 @@
+/* Insights: filters, search, thumbnails. Built from site.css pieces only (badge, isrc, ib, btn-o, fld). */
+main.ins-flow{height:auto!important;padding-bottom:80px}
+main.ins-flow>.in{height:auto;padding-top:178px}
+main.ins-flow .hline{display:none}
+
+.ins-tools{display:flex;flex-direction:column;align-items:center;gap:18px;margin:0 auto 34px}
+.ins-q{position:relative;width:420px}
+.ins-q .fld{height:40px;color:#fff;border-bottom:1.5px solid #fff;font-size:14px;letter-spacing:calc(1.4px + var(--trk,0em));text-transform:uppercase;padding-right:30px}
+.ins-q .fld::placeholder{color:#fff;opacity:.75}
+.ins-q .fld:focus{outline:none;border-bottom-color:var(--yellow)}
+.ins-q .fld:focus-visible{outline:none}
+.ins-q .x{position:absolute;right:0;top:8px;border:0;background:none;color:#fff;font-size:18px;line-height:1;cursor:pointer;padding:4px 6px}
+.ins-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.ins-chip{height:30px;padding:0 18px;background:transparent;cursor:pointer;font-family:inherit}
+.ins-chip[aria-pressed="true"]{background:var(--yellow)}
+.ins-chip.gap{margin-left:14px}
+.ins-count{min-height:17px;margin:0}
+
+main.ins-flow .ins-list{list-style:none;margin:0 37px;padding:0;display:grid;grid-template-columns:1fr 1fr;clip-path:inset(0 0 2px 0)}
+main.ins-flow .ins-list>li{padding:56px 0 56px 1px;border-bottom:2px solid var(--line);min-width:0}
+main.ins-flow .ins-list>li:nth-child(even){padding-left:448px;padding-left:1px}
+main.ins-flow .ins-list>li[hidden]{display:none}
+main.ins-flow .ins-list .e{position:static}
+main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-list .ib{max-width:423px}
+main.ins-flow .ins-list>li{padding-right:24px}
+main.ins-flow .ins-list .it br.bd{display:none}
+main.ins-flow .ins-list .it{text-wrap:balance}
+main.ins-flow .ins-list .it{margin-top:18px}
+main.ins-flow .ins-list .isrc{margin-top:16px}
+main.ins-flow .ins-list .ib{margin-top:14px}
+main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-list .ib{margin-left:3px}
+.ins-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:22px}
+.ins-acts .more{width:auto!important;margin-left:3px}
+.ins-acts .btn-o{padding:0 16px;min-width:121px;width:auto!important;height:30px!important}
+
+
+.ins-moments{margin:18px 0 0 3px;max-width:423px;border-top:2px solid var(--line)}
+.ins-m{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(219,219,219,.25);text-decoration:none}
+.ins-m .ts{flex:none;height:24px;min-width:62px;font-size:10px;padding:0 8px}
+.ins-m .q{flex:1;min-width:0;direction:rtl;text-align:right;font-size:13px;line-height:19px;color:#fff}
+.ins-m:hover .ts{background:var(--yellow)}
+.ins-m mark,.ins-list mark{background:transparent;color:var(--yellow)}
+.ins-plus{margin:10px 0 0 3px}
+.ins-show{display:flex;margin:56px auto 0;height:42px;padding:0 34px;background:transparent;cursor:pointer;font-family:inherit}
+.ins-none{text-align:center;margin:40px 0 0}
+
+@media (max-width:767px){
+  main.ins-flow>.in{padding-top:calc(130*var(--u))}
+  .ins-tools{gap:calc(14*var(--u));margin-bottom:calc(10*var(--u));padding:0 calc(20*var(--u))}
+  .ins-q{width:100%}
+  .ins-q .fld{font-size:calc(15*var(--u));height:calc(42*var(--u))}
+  .ins-chip{height:calc(34*var(--u));padding:0 calc(14*var(--u))}
+  .ins-chip.gap{margin-left:0}
+  main.ins-flow .ins-list{grid-template-columns:1fr;margin:0;clip-path:none}
+  main.ins-flow .ins-list>li,main.ins-flow .ins-list>li:nth-child(even){padding:calc(36*var(--u)) calc(20*var(--u));border-bottom:0}
+  main.ins-flow .ins-list .it{margin-top:calc(11*var(--u))}
+  main.ins-flow .ins-list .isrc,main.ins-flow .ins-list .ib{margin-top:calc(10*var(--u))}
+  main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-list .ib{margin-left:0}
+  .ins-acts{margin-top:calc(16*var(--u))}
+  .ins-acts .btn-o{height:calc(42*var(--u))!important;min-width:calc(150*var(--u))}
+  .ins-moments{margin-left:0;max-width:none}
+  main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-list .ib{max-width:none}
+  .ins-m .q{font-size:calc(15*var(--u));line-height:calc(22*var(--u))}
+  .ins-m .ts{height:calc(30*var(--u));font-size:calc(12*var(--u))}
+  .ins-show{height:calc(45*var(--u))}
+}
