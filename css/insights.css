@@ -33,6 +33,34 @@ main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-lis
 .ins-acts .more{width:auto!important;margin-left:3px}
 .ins-acts .btn-o{padding:0 16px;min-width:121px;width:auto!important;height:30px!important}
 
+.ins-media{display:block;width:423px;aspect-ratio:16/9;margin-bottom:22px;position:relative;overflow:hidden;background:var(--dark);text-decoration:none}
+.ins-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease,opacity .2s ease}
+/* Hover pop: the picture zooms a touch and drifts with the cursor (parallax). */
+.ins-media img{transform:scale(1.001) translate3d(0,0,0);transition:transform .5s cubic-bezier(.2,.7,.1,1);will-change:transform}
+.ins-media.pop img{transform:scale(1.09) translate3d(calc(var(--px,0)*-14px),calc(var(--py,0)*-10px),0);transition:transform .25s ease-out}
+.ins-media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 60px rgba(0,0,0,.0);transition:box-shadow .4s ease;pointer-events:none}
+.ins-media.pop::after{box-shadow:inset 0 0 70px rgba(0,0,0,.45)}
+.ins-media img.sq{object-fit:contain}
+/* Signature move layer: same frame as the picture, so it lines up pixel for pixel and shares the parallax. */
+.ins-media .fxw{position:absolute;inset:0;pointer-events:none;transform:scale(1.001);transition:transform .5s cubic-bezier(.2,.7,.1,1)}
+.ins-media.pop .fxw{transform:scale(1.09) translate3d(calc(var(--px,0)*-14px),calc(var(--py,0)*-10px),0);transition:transform .25s ease-out}
+.ins-media .fx{position:absolute;inset:0}
+.ins-media .fx img{width:100%;height:100%;object-fit:cover;transform:none!important;transition:none}
+.ins-media .fx .flame{position:absolute;left:var(--fl-x);top:var(--fl-y);width:2.4%;height:15%;margin-left:-1.2%;transform-origin:50% 0;transform:rotate(var(--fl-r));border-radius:50% 50% 50% 50%/30% 30% 70% 70%;background:radial-gradient(ellipse 50% 60% at 50% 18%,#fff 0,#ffe9a8 30%,rgba(255,150,40,.75) 60%,rgba(255,90,0,0) 100%);filter:blur(.6px);opacity:0}
+/* Launch: the missile accelerates up its own line and leaves the frame. */
+.ins-media.fx-launch{--fl-x:66.6%;--fl-y:31.4%;--fl-r:-17.7deg}
+.ins-media.fx-launch:not(.pop) .fx{animation:fxBack .45s ease both}
+.ins-media.fx-launch.pop .fx{transform:translate(-11.2%,-62%);transition:transform 1.15s cubic-bezier(.6,0,.9,.45) .08s}
+.ins-media.fx-launch.pop .fx .flame{opacity:1;transition:opacity .12s;animation:fxFlicker .09s steps(2) infinite alternate}
+.ins-media.fx-launch.pop{animation:fxRumble .32s linear}
+@keyframes fxBack{from{opacity:0}to{opacity:1}}
+@keyframes fxFlicker{from{height:13%}to{height:18%}}
+@keyframes fxRumble{0%,100%{transform:none}20%{transform:translate(1px,-1px)}40%{transform:translate(-1px,1px)}60%{transform:translate(1px,1px)}80%{transform:translate(-1px,0)}}
+.ins-media .len{position:absolute;left:0;bottom:0;background:var(--yellow);color:#fff;font-size:12px;line-height:16.8px;letter-spacing:calc(1.2px + var(--trk,0em));padding:4px 10px 3px}
+.ins-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;height:100%;border:2px solid var(--line);text-align:center;padding:0 24px}
+.ins-tile .nm{font-size:30px;line-height:34px;color:#fff;letter-spacing:calc(1px + var(--trk,0em))}
+.ins-tile .bar{position:static;width:76px;height:8px}
+.ins-tile .ev{font-size:12px;line-height:16.8px;letter-spacing:calc(1.2px + var(--trk,0em));color:var(--yellow)}
 
 .ins-moments{margin:18px 0 0 3px;max-width:423px;border-top:2px solid var(--line)}
 .ins-m{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(219,219,219,.25);text-decoration:none}
@@ -43,6 +71,7 @@ main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-lis
 .ins-plus{margin:10px 0 0 3px}
 .ins-show{display:flex;margin:56px auto 0;height:42px;padding:0 34px;background:transparent;cursor:pointer;font-family:inherit}
 .ins-none{text-align:center;margin:40px 0 0}
+@media (prefers-reduced-motion:reduce){.ins-media img,.ins-media.pop img,.ins-media .fxw,.ins-media .fx{transition:none!important;transform:none!important;animation:none!important}.ins-media .flame{display:none}.ins-media.pop{animation:none!important}}
 
 @media (max-width:767px){
   main.ins-flow>.in{padding-top:calc(130*var(--u))}
@@ -58,6 +87,10 @@ main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-lis
   main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-list .ib{margin-left:0}
   .ins-acts{margin-top:calc(16*var(--u))}
   .ins-acts .btn-o{height:calc(42*var(--u))!important;min-width:calc(150*var(--u))}
+  .ins-media{width:100%;margin-bottom:calc(16*var(--u))}
+  .ins-media .len{font-size:calc(13*var(--u));line-height:calc(18*var(--u))}
+  .ins-tile .nm{font-size:calc(26*var(--u));line-height:calc(30*var(--u))}
+  .ins-tile .ev{font-size:calc(12*var(--u));line-height:calc(16*var(--u))}
   .ins-moments{margin-left:0;max-width:none}
   main.ins-flow .ins-list .it,main.ins-flow .ins-list .isrc,main.ins-flow .ins-list .ib{max-width:none}
   .ins-m .q{font-size:calc(15*var(--u));line-height:calc(22*var(--u))}

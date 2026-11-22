@@ -17,10 +17,46 @@
     var acts = document.createElement("div"); acts.className = "ins-acts";
     Array.prototype.slice.call(li.children).forEach(function (c) { if (c.tagName === "A") acts.appendChild(c); });
     li.appendChild(acts);
-
+    var d = li.dataset, media;
+    if (d.thumb) {
+      media = document.createElement("a");
+      var first = acts.querySelector("a");
+      media.className = "ins-media"; media.target = "_blank"; media.rel = "noopener";
+      media.href = d.yt ? "https://www.youtube.com/watch?v=" + d.yt : (first ? first.href : "#");
+      if (d.yt) media.setAttribute("aria-label", "Watch on YouTube");
+      media.innerHTML = '<img src="' + d.thumb + '" alt="" loading="lazy">';
+    } else {
+      media = document.createElement("div"); media.className = "ins-media";
+      media.innerHTML = '<div class="ins-tile"><span class="nm f9">' + esc(d.tile || "") + '</span><span class="bar" aria-hidden="true"></span><span class="ev f9">' + esc(d.event || "") + '</span></div>';
+    }
+    /* Signature move: a cut-out layer (the missile) that rides the parallax, then flies off on hover. */
+    if (d.fx && d.fxSrc && media.querySelector("img")) {
+      media.classList.add("fx-" + d.fx);
+      media.insertAdjacentHTML("beforeend", '<span class="fxw" aria-hidden="true"><span class="fx"><img src="' + d.fxSrc + '" alt=""><i class="flame"></i></span></span>');
+    }
+    var im = media.querySelector("img");
+    if (im) {
+      im.addEventListener("load", function () { if (im.naturalWidth / im.naturalHeight < 1.1) im.classList.add("sq"); });
+      im.addEventListener("error", function () { if (!im.dataset.retry) { im.dataset.retry = "1"; im.src = d.thumb + "?r=1"; } });
+    }
+    li.insertBefore(media, li.firstChild);
     ["it", "isrc", "ib"].forEach(function (k) { var el = li.querySelector("." + k); if (el) el.dataset.html = el.innerHTML; });
     li._meta = (li.textContent || "").replace(/\s+/g, " ").toLowerCase();
   });
+
+  /* Hover pop: the picture zooms a touch and drifts with the cursor. */
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    list.addEventListener("mousemove", function (e) {
+      var m = e.target.closest(".ins-media"); if (!m || !m.querySelector("img")) return;
+      var r = m.getBoundingClientRect();
+      m.style.setProperty("--px", ((e.clientX - r.left) / r.width - .5).toFixed(3));
+      m.style.setProperty("--py", ((e.clientY - r.top) / r.height - .5).toFixed(3));
+      m.classList.add("pop");
+    });
+    list.addEventListener("mouseout", function (e) {
+      var m = e.target.closest(".ins-media"); if (m && !m.contains(e.relatedTarget)) m.classList.remove("pop");
+    });
+  }
 
   /* Tools row, in the site's own pieces: an underlined field and outline pills. */
   var tools = document.createElement("div"); tools.className = "ins-tools";
